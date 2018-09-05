@@ -89,7 +89,7 @@ $$ LANGUAGE plpgsql;
 
 -- 6. Load `reits.csv` into the `reits` table.
 COPY tblreits(code,name) 
-FROM 'C:\hio\exercises_\exercises-master\portfolio\reits.csv' DELIMITER ',' CSV HEADER;
+FROM 'reits.csv' DELIMITER ',' CSV HEADER;
 
 -- 7. Load `prices.csv` into the `prices` table.
 DROP TABLE IF EXISTS temp_price;  
@@ -101,7 +101,7 @@ CREATE TEMPORARY TABLE temp_price(
 );
 ---manual & impractical way for temptable
 COPY temp_price(priceDate,"A17U.SI","N2IU.SI","M1GU.SI") 
-FROM 'C:\hio\exercises_\exercises-master\portfolio\prices.csv' DELIMITER ',' CSV HEADER;
+FROM 'prices.csv' DELIMITER ',' CSV HEADER;
 
 CREATE OR REPLACE FUNCTION unnest(anyarray)
   RETURNS SETOF anyelement AS
@@ -138,7 +138,7 @@ CREATE TEMPORARY TABLE temp_activities(
   SellProfit double precision
 );
 COPY temp_activities(tradeDate,reitsCode,type,quantity,tradePrice) 
-FROM 'C:\hio\exercises_\exercises-master\portfolio\activities.csv' DELIMITER ',' CSV HEADER;	
+FROM 'activities.csv' DELIMITER ',' CSV HEADER;	
 
 INSERT INTO tblActivities(reits_id,type,quantity,tradePrice,tradeDate)
 SELECT tblreits.reits_id,temp_activities.type,temp_activities.quantity,temp_activities.tradePrice,temp_activities.tradeDate FROM tblreits LEFT JOIN temp_activities ON tblreits.code = temp_activities.reitsCode
