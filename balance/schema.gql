@@ -1,0 +1,36 @@
+type Account {
+  id: ID!
+  balance: Float!
+  availableBalance(context: String): Float!
+}
+
+type ReservedBalance {
+  id: ID!
+  context: String!
+  balance: Float!
+}
+
+type VirtualBalance {
+  id: ID!
+  context: String!
+  balance: Float!
+}
+
+type Query {
+  account(id: ID!): Account
+  reservedBalance(id: ID!): ReservedBalance
+  virtualBalance(id: ID!): VirtualBalance
+  reservedBalances(account: ID!): [ReservedBalance]!
+  virtualBalances(account: ID!): [VirtualBalance]!
+}
+
+type Mutation {
+  updateBalance(request: ID!, account: ID!, amount: Float!): Float!
+  createReservedBalance(request: ID!, account: ID!, context: String!, amount: Float!): ReservedBalance!
+  updateReservedBalance(request: ID!, reservedBalance: ID!, amount: Float!): ReservedBalance!;
+  releaseReservedBalance(request: ID!, reservedBalance: ID!): boolean;
+  createVirtualBalance(request: ID!, account: ID!, context: String!, amount: Float!): VirtualBalance!;
+  updateVirtualBalance(request: ID!, virtualBalance: ID!, amount: Float!): VirtualBalance!;
+  cancelVirtualBalance(request: ID!, virtualBalance: ID!): boolean;
+  commitVirtualBalance(request: ID!, virtualBalance: ID!): boolean;
+}
