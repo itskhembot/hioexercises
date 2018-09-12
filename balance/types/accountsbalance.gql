@@ -1,0 +1,17 @@
+type Account {
+  id: ID!
+  balance: Float!
+  availableBalance(context: String): Float!
+}
+
+type ReservedBalance {
+  id: ID!
+  context: String!
+  balance: Float!
+}
+
+type VirtualBalance {
+  id: ID!
+  context: String!
+  balance: Float!
+}
