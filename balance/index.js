@@ -17,16 +17,7 @@ const sequelize = new Sequelize('balance', 'postgres', 'yuadnat', {
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-  
- const Account = sequelize.define('Account', {
+  const Account = sequelize.define('Account', {
   id: {
     type: sequelize.Sequelize.INTEGER,
     primaryKey: true,
@@ -36,15 +27,6 @@ sequelize
   availablebalance: sequelize.Sequelize.DOUBLE,
 }, { tableName: 'account', freezeTableName: true, timestamps: false });
 
-//sequelize
-//  .query('SELECT * FROM Account', { model: Account })
- // .then(accounts => {
-    // Each record will now be mapped to the project's model.
-    //console.log(accounts)
- // })
-//AccountModel.removeAttribute('id');
-
-//export default AccountModel; 
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
@@ -55,7 +37,7 @@ const typeDefs = gql`
 type Account {
   id: ID!
   balance: Float!
-  availableBalance(context: String): Float!
+  availablebalance(context: String): Float!
 }
 
   # The "Query" type is the root of all GraphQL queries.
@@ -81,10 +63,6 @@ const resolvers = {
 		return Account.findAll();
         },
   },
-  Account: {
-        id: account => account.id,
-        balance: account => account.balance
-    },
 };
 
 // In the most basic sense, the ApolloServer can be started
