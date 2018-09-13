@@ -1,34 +1,51 @@
 const { ApolloServer, gql } = require('apollo-server');
+const  { makeExecutableSchema } = require('graphql-tools');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('balance', 'postgres', 'yuadnat', {
+  host: 'localhost',
+  dialect: 'postgres',
+  operatorsAliases: false,
 
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+
+});
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
 // from an existing data source like a REST API or database.
-const accounts = [
-  {
-    id:1,
-	balance:200,
-	availablebalance:100,
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+  
+ const Account = sequelize.define('Account', {
+  id: {
+    type: sequelize.Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
   },
-  {
-    id:2,
-	balance:100,
-	availablebalance:150,
-  },
-];
-const reservedbalance = [
-  {
-    id:1,
-	context:"test balance for id 1",
-	balance:100,
-  },
-];
-const virtualbalance = [
-  {
-    id:1,
-	context:"allocate budget for id 2",
-	balance:50,
-  },
-];
+  balance: sequelize.Sequelize.DOUBLE,
+  availablebalance: sequelize.Sequelize.DOUBLE,
+}, { tableName: 'account', freezeTableName: true, timestamps: false });
+
+//sequelize
+//  .query('SELECT * FROM Account', { model: Account })
+ // .then(accounts => {
+    // Each record will now be mapped to the project's model.
+    //console.log(accounts)
+ // })
+//AccountModel.removeAttribute('id');
+
+//export default AccountModel; 
+
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
@@ -41,41 +58,43 @@ type Account {
   availableBalance(context: String): Float!
 }
 
-type ReservedBalance {
-  id: ID!
-  context: String!
-  balance: Float!
-}
-
-type VirtualBalance {
-  id: ID!
-  context: String!
-  balance: Float!
-}
-
   # The "Query" type is the root of all GraphQL queries.
   # (A "Mutation" type will be covered later on.)
   type Query {
-    accounts: [Account]
-	reservedbalance: [ReservedBalance]
-	virtualbalance: [VirtualBalance]
+    account(id: ID!): Account
+	accounts: [Account]
   }
-`;
+schema {
+  query: Query
+}
+  `;
 
 // Resolvers define the technique for fetching the types in the
-// schema.  We'll retrieve books from the "books" array above.
+// schema. 
 const resolvers = {
   Query: {
-    accounts: () => accounts,
-    reservedbalance: () => reservedbalance,
-    virtualbalance: () => virtualbalance,
+    //account: (id) => accounts.findById(obj.id),
+	account: async function(obj,args) {
+		return Account.findOne({where: {id: args.id}});
+        },
+    accounts: async function(obj,args) {
+		return Account.findAll();
+        },
   },
+  Account: {
+        id: account => account.id,
+        balance: account => account.balance
+    },
 };
 
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
-const server = new ApolloServer({ typeDefs, resolvers });
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+})
+const server = new ApolloServer({ schema });
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
