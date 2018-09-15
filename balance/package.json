@@ -5,20 +5,29 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js",
+    "babel": "babel",
+    "build": "babel src -d lib"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.0.7",
-    "apollo-server-koa": "^2.0.6",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.1.1",
     "koa": "^2.5.3",
-    "mysql2": "^1.6.1",
+    "merge-graphql-schemas": "^1.5.4",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.38.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "babel-cli": "^6.26.0",
+    "babel-install": "2.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }

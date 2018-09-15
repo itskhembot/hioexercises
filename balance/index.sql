@@ -5,7 +5,7 @@ CREATE TABLE Account (
 );
 
 CREATE TABLE ReservedBalance (
-  Id PRIMARY KEY,
+  Id serial PRIMARY KEY,
   AccountId integer NOT NULL,
   Context varchar(255),
   Balance double precision,
@@ -16,7 +16,7 @@ CREATE TABLE ReservedBalance (
 );
 
 CREATE TABLE VirtualBalance (
-  Id PRIMARY KEY,
+  Id serial PRIMARY KEY,
   AccountId integer NOT NULL,
   Context varchar(255),
   Balance double precision,

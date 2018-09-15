@@ -1,7 +1,7 @@
 type Account {
   id: ID!
   balance: Float!
-  availableBalance(context: String): Float!
+  availablebalance(context: String): Float!
 }
 
 type ReservedBalance {

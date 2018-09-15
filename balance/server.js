@@ -1,14 +1,23 @@
-const { ApolloServer, gql } = require('apollo-server-koa');
-const { typeDefs, resolvers } = require('./schema');
+const { ApolloServer, gql } = require('apollo-server');
+const  { makeExecutableSchema } = require('graphql-tools');
+const path = require('path');
+const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 
-const server = new ApolloServer({
-  // These will be defined for both new or existing servers
-  typeDefs,
-  resolvers,
+const schema = makeExecutableSchema({
+      typeDefs: mergeTypes(
+        fileLoader(
+          path.join(__dirname, '/types'),
+          { recursive: true },
+        )),
+      resolvers: mergeResolvers(
+	    fileLoader(
+          path.join(__dirname, '/resolvers'),
+          { recursive: true },
+      )),
+    });
+
+const server = new ApolloServer({ schema });
+
+server.listen().then(({ url }) => {
+  console.log(`??  Server ready at ${url}`);
 });
-
-server.applyMiddleware({ app }); // app is from an existing koa app
-
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-)
