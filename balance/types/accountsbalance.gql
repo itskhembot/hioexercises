@@ -6,12 +6,14 @@ type Account {
 
 type ReservedBalance {
   id: ID!
+  accountid: Int!
   context: String!
   balance: Float!
 }
 
 type VirtualBalance {
   id: ID!
+  accountid: Int!
   context: String!
   balance: Float!
 }
