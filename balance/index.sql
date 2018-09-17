@@ -25,3 +25,14 @@ CREATE TABLE VirtualBalance (
       REFERENCES Account (Id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+
+CREATE TABLE Request (
+  uuId  varchar(255),
+  accountId integer,
+  reservedbalanceid integer,
+  virtualbalanceid integer,
+  amount  double precision,
+  resultset  varchar(255),
+  requesttype varchar(255)
+);

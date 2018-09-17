@@ -1,6 +1,6 @@
 import sequelize from '../sequelize.js';
-  
-  const AccountModel= sequelize.define('Account', {
+
+const AccountModel = sequelize.define('Account', {
   id: {
     type: sequelize.Sequelize.INTEGER,
     primaryKey: true,

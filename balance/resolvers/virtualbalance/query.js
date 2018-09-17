@@ -1,13 +1,13 @@
 import VirtualBalanceModel from '../../models/virtualbalance';
 
 
-export default{
+export default {
   Query: {
-	virtualBalance: function(obj,args) {
-		return VirtualBalanceModel.findOne({where: {id: args.id}});
-        },
-    virtualBalances: function(obj,args) {
-		return VirtualBalanceModel.findAll({where: {accountid: args.id}});
-        },
+    virtualBalance: function (obj, args) {
+      return VirtualBalanceModel.findOne({ where: { id: args.id } });
+    },
+    virtualBalances: function (obj, args) {
+      return VirtualBalanceModel.findAll({ where: { accountid: args.id } });
+    },
   },
 };

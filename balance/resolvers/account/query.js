@@ -1,13 +1,13 @@
 import AccountModel from '../../models/account';
 
 
-export default{
+export default {
   Query: {
-	account: function(obj,args) {
-		return AccountModel.findOne({where: {id: args.id}});
-        },
+    account: function (obj, args) {
+      return AccountModel.findOne({ where: { id: args.id } });
+    },
     //accounts: async function(obj,args) {
-	//	return Account.findAll();
-     //   },
+    //	return Account.findAll();
+    //   },
   },
 };

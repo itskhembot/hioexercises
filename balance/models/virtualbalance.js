@@ -1,6 +1,6 @@
 import sequelize from '../sequelize.js';
-  
-  const VirtualBalanceModel = sequelize.define('VirtualBalance', {
+
+const VirtualBalanceModel = sequelize.define('VirtualBalance', {
   id: {
     type: sequelize.Sequelize.INTEGER,
     primaryKey: true,

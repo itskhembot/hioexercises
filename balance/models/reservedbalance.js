@@ -1,6 +1,6 @@
 import sequelize from '../sequelize.js';
-  
-  const ReservedBalanceModel = sequelize.define('ReservedBalance', {
+
+const ReservedBalanceModel = sequelize.define('ReservedBalance', {
   id: {
     type: sequelize.Sequelize.INTEGER,
     primaryKey: true,
