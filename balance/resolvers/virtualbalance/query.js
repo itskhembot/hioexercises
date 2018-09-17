@@ -7,7 +7,7 @@ export default {
       return VirtualBalanceModel.findOne({ where: { id: args.id } });
     },
     virtualBalances: function (obj, args) {
-      return VirtualBalanceModel.findAll({ where: { accountid: args.id } });
+      return VirtualBalanceModel.findAll({ where: { accountId: args.account } });
     },
   },
 };

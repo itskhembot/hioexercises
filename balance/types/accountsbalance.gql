@@ -1,19 +1,19 @@
 type Account {
   id: ID!
   balance: Float!
-  availablebalance(context: String): Float!
+  availableBalance(context: String): Float!
 }
 
 type ReservedBalance {
   id: ID!
-  accountid: Int!
+  accountId: Int!
   context: String!
   balance: Float!
 }
 
 type VirtualBalance {
   id: ID!
-  accountid: Int!
+  accountId: Int!
   context: String!
   balance: Float!
 }

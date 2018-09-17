@@ -1,37 +1,37 @@
-CREATE TABLE Account (
-  Id serial PRIMARY KEY,
-  Balance double precision,
-  AvailableBalance double precision
+CREATE TABLE "Account" (
+  "id" serial PRIMARY KEY,
+  "balance" double precision,
+  "availableBalance" double precision
 );
 
-CREATE TABLE ReservedBalance (
-  Id serial PRIMARY KEY,
-  AccountId integer NOT NULL,
-  Context varchar(255),
-  Balance double precision,
-  IsReleased boolean,
+CREATE TABLE "ReservedBalance" (
+  "id" serial PRIMARY KEY,
+  "accountId" integer NOT NULL,
+  "context" varchar(255),
+  "balance" double precision,
+  "isReleased" boolean,
   CONSTRAINT ReservedBalance_AccountId FOREIGN KEY (AccountId)
       REFERENCES Account (Id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE VirtualBalance (
-  Id serial PRIMARY KEY,
-  AccountId integer NOT NULL,
-  Context varchar(255),
-  Balance double precision,
-  IsCommit boolean,
+CREATE TABLE "VirtualBalance" (
+  "id" serial PRIMARY KEY,
+  "accountId" integer NOT NULL,
+  "context" varchar(255),
+  "balance" double precision,
+  "isCommit" boolean,
   CONSTRAINT VirtualBalance_AccountId FOREIGN KEY (AccountId)
       REFERENCES Account (Id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE Request (
-  uuId  varchar(255),
-  accountId integer,
-  reservedbalanceid integer,
-  virtualbalanceid integer,
-  amount  double precision,
-  resultset  varchar(255),
-  requesttype varchar(255)
+CREATE TABLE "Request" (
+  "uuId"  varchar(255),
+  "accountId" integer,
+  "reservedBalanceId" integer,
+  "virtualBalanceId" integer,
+  "amount"  double precision,
+  "resultSet"  varchar(255),
+  "requestType" varchar(255)
 );

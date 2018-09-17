@@ -1,13 +1,13 @@
-import sequelize from '../sequelize.js';
+import sequelize from '../lib/sequelize.js';
 
 const RequestModel = sequelize.define('Request', {
   uuid: sequelize.Sequelize.STRING,
-  accountid: sequelize.Sequelize.INTEGER,
-  reservebalanceid: sequelize.Sequelize.INTEGER,
-  virtualbalanceid: sequelize.Sequelize.INTEGER,
+  accountId: sequelize.Sequelize.INTEGER,
+  reserveBalanceId: sequelize.Sequelize.INTEGER,
+  virtualBalanceId: sequelize.Sequelize.INTEGER,
   amount: sequelize.Sequelize.DOUBLE,
-  resultset: sequelize.Sequelize.STRING,
-  requesttype: sequelize.Sequelize.DOUBLE,
+  resultSet: sequelize.Sequelize.STRING,
+  requestType: sequelize.Sequelize.DOUBLE,
 }, { tableName: 'request', freezeTableName: true, timestamps: false });
 
 export default RequestModel;

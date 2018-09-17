@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "apollo-server": "^2.0.7",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.1.1",

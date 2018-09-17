@@ -1,4 +1,4 @@
-import sequelize from '../sequelize.js';
+import sequelize from '../lib/sequelize.js';
 
 const AccountModel = sequelize.define('Account', {
   id: {
@@ -7,7 +7,7 @@ const AccountModel = sequelize.define('Account', {
     autoIncrement: true,
   },
   balance: sequelize.Sequelize.DOUBLE,
-  availablebalance: sequelize.Sequelize.DOUBLE,
-}, { tableName: 'account', freezeTableName: true, timestamps: false });
+  availableBalance: sequelize.Sequelize.DOUBLE,
+}, { tableName: 'Account', freezeTableName: true, timestamps: false });
 
 export default AccountModel;

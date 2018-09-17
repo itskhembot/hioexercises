@@ -7,7 +7,7 @@ export default {
       return ReservedBalanceModel.findOne({ where: { id: args.id } });
     },
     reservedBalances: function (obj, args) {
-      return ReservedBalanceModel.findAll({ where: { accountid: args.id } });
+      return ReservedBalanceModel.findAll({ where: { accountId: args.account } });
     },
   },
 };
