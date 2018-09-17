@@ -26,7 +26,6 @@ CREATE TABLE VirtualBalance (
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-
 CREATE TABLE Request (
   uuId  varchar(255),
   accountId integer,
