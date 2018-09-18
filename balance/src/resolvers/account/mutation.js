@@ -2,8 +2,8 @@ import RequestModel from '../../models/request';
 
 export default {
   Mutation: {
-    updateBalance: function (obj, args) {
-      RequestModel.findOrCreate({
+    updateBalance: async (obj, args) => {
+      const request = RequestModel.findOrCreate({
         where: {
           id: args.request
         },
@@ -11,9 +11,14 @@ export default {
           id: args.request,
           
         },
-      }).spread((RequestModel, created) => {
-         RequestModel.get('amount');
       });
+      //findOne if found
+      //return request.result;
+      //else
+      //create request
+      //updatebalance
+      //return amount
+
     },
   },
 };

@@ -3,6 +3,7 @@ const { makeExecutableSchema } = require('graphql-tools');
 const path = require('path');
 const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const babel = require("@babel/core");
+import 'babel-polyfill';
 
 
 const schema = makeExecutableSchema({

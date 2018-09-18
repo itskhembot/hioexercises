@@ -3,11 +3,13 @@ import VirtualBalanceModel from '../../models/virtual-balance';
 
 export default {
   Query: {
-    virtualBalance: function (obj, args) {
-      return VirtualBalanceModel.findOne({ where: { id: args.id } });
+    virtualBalance: async (obj, args) => {
+      const virtualBalance = VirtualBalanceModel.findOne({ where: { id: args.id } });
+      return virtualBalance;
     },
-    virtualBalances: function (obj, args) {
-      return VirtualBalanceModel.findAll({ where: { accountId: args.account } });
+    virtualBalances: async (obj, args) => {
+      const virtualBalances = VirtualBalanceModel.findAll({ where: { account: args.account } });
+      return virtualBalances;
     },
   },
 };
