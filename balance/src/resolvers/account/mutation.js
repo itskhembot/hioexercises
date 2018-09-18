@@ -3,6 +3,7 @@ import AccountModel from '../../models/account';
 export default {
   Mutation: {
     updateBalance: async (obj, args) => {
+    try{
       let request = await RequestModel.findOne({
         where: {
           id: args.request
@@ -30,6 +31,14 @@ export default {
             //create request
             //return result
       return request.result;
-     },
+     }catch(err){
+      let request = await RequestModel.build({
+        id: args.request,
+        result: err.message,
+        error: err
+      });
+      return request.result;
+     }
+    },
   },
 };
