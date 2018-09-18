@@ -1,7 +1,25 @@
-// Transpile all code following this line with babel and use 'env' (aka ES6) preset.
-require('babel-register')({
-    presets: ['env']
-})
+const { ApolloServer, gql } = require('apollo-server');
+const { makeExecutableSchema } = require('graphql-tools');
+const path = require('path');
+const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
+const babel = require("@babel/core");
 
-// Import the rest of our application.
-module.exports = require('./server.js')
+
+const schema = makeExecutableSchema({
+  typeDefs: mergeTypes(
+    fileLoader(
+      path.join(__dirname, '/types'),
+      { recursive: true },
+    )),
+  resolvers: mergeResolvers(
+    fileLoader(
+      path.join(__dirname, '/resolvers'),
+      { recursive: true },
+    )),
+});
+
+const server = new ApolloServer({ schema });
+
+server.listen().then(({ url }) => {
+  console.log(`??  Server ready at ${url}`);
+});

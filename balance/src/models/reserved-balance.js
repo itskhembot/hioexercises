@@ -6,7 +6,7 @@ const ReservedBalanceModel = sequelize.define('ReservedBalance', {
     primaryKey: true,
     autoIncrement: true,
   },
-  accountId: sequelize.Sequelize.INTEGER,
+  account: sequelize.Sequelize.INTEGER,
   context: sequelize.Sequelize.STRING,
   balance: sequelize.Sequelize.DOUBLE,
   isReleased: sequelize.Sequelize.BOOLEAN,

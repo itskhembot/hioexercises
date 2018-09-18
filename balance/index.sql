@@ -6,7 +6,7 @@ CREATE TABLE "Account" (
 
 CREATE TABLE "ReservedBalance" (
   "id" serial PRIMARY KEY,
-  "accountId" integer NOT NULL,
+  "account" integer NOT NULL,
   "context" varchar(255),
   "balance" double precision,
   "isReleased" boolean,
@@ -17,7 +17,7 @@ CREATE TABLE "ReservedBalance" (
 
 CREATE TABLE "VirtualBalance" (
   "id" serial PRIMARY KEY,
-  "accountId" integer NOT NULL,
+  "account" integer NOT NULL,
   "context" varchar(255),
   "balance" double precision,
   "isCommit" boolean,
@@ -27,12 +27,7 @@ CREATE TABLE "VirtualBalance" (
 );
 
 CREATE TABLE "Request" (
-  "id" serial PRIMARY KEY,
-  "uuId"  varchar(255),
-  "accountId" integer,
-  "reservedBalanceId" integer,
-  "virtualBalanceId" integer,
-  "amount"  double precision,
-  "resultSet"  varchar(255),
-  "requestType" varchar(255)
+  "id" varchar(255) PRIMARY KEY,
+  "result"  varchar(255),
+  "error" varchar(255)
 );

@@ -1,4 +1,4 @@
-import ReservedBalanceModel from '../../models/reservedbalance';
+import ReservedBalanceModel from '../../models/reserved-balance';
 
 
 export default {
@@ -7,7 +7,7 @@ export default {
       return ReservedBalanceModel.findOne({ where: { id: args.id } });
     },
     reservedBalances: function (obj, args) {
-      return ReservedBalanceModel.findAll({ where: { accountId: args.account } });
+      return ReservedBalanceModel.findAll({ where: { account: args.account } });
     },
   },
 };

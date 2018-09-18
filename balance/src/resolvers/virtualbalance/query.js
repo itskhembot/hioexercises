@@ -1,4 +1,4 @@
-import VirtualBalanceModel from '../../models/virtualbalance';
+import VirtualBalanceModel from '../../models/virtual-balance';
 
 
 export default {

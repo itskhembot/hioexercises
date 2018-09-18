@@ -6,7 +6,7 @@ const VirtualBalanceModel = sequelize.define('VirtualBalance', {
     primaryKey: true,
     autoIncrement: true,
   },
-  accountId: sequelize.Sequelize.INTEGER,
+  account: sequelize.Sequelize.INTEGER,
   context: sequelize.Sequelize.STRING,
   balance: sequelize.Sequelize.DOUBLE,
   isCommit: sequelize.Sequelize.BOOLEAN,

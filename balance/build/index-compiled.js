@@ -15,6 +15,8 @@ const {
   mergeResolvers
 } = require('merge-graphql-schemas');
 
+const babel = require("@babel/core");
+
 const schema = makeExecutableSchema({
   typeDefs: mergeTypes(fileLoader(path.join(__dirname, '/types'), {
     recursive: true
@@ -31,5 +33,3 @@ server.listen().then(({
 }) => {
   console.log(`??  Server ready at ${url}`);
 });
-
-//# sourceMappingURL=index-compiled.js.map

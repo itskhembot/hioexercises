@@ -5,17 +5,14 @@ export default {
     updateBalance: function (obj, args) {
       RequestModel.findOrCreate({
         where: {
-          uuId: args.request
+          id: args.request
         },
         defaults: {//object containing fields and values to apply
-          uuId: args.request,
-          accountId: args.accountid,
-          amount: args.amount,
-          resultSet: args.amount,
-          requestType: "updateBalance",
+          id: args.request,
+          
         },
       }).spread((RequestModel, created) => {
-        return RequestModel.get('amount');
+         RequestModel.get('amount');
       });
     },
   },

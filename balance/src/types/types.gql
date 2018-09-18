@@ -6,25 +6,20 @@ type Account {
 
 type ReservedBalance {
   id: ID!
-  accountId: Int!
+  account: Int!
   context: String!
   balance: Float!
 }
 
 type VirtualBalance {
   id: ID!
-  accountId: Int!
+  account: Int!
   context: String!
   balance: Float!
 }
 
 type Request {
-  id: ID!
-  uuId: Int!
-  accountId: Int!
-  reservedBalanceId: Int!
-  virtualBalanceId: Int!
-  amount: Float!
-  resultSet: String!
-  requestType: String!
+  id: String!
+  result: String!
+  error: String!
 }
