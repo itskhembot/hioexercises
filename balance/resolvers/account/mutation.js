@@ -3,7 +3,7 @@ import RequestModel from '../../models/request';
 export default {
   Mutation: {
     updateBalance: function (obj, args) {
-      return RequestModel.findOrCreate({
+      RequestModel.findOrCreate({
         where: {
           uuId: args.request
         },
@@ -15,9 +15,7 @@ export default {
           requestType: "updateBalance",
         },
       }).spread((RequestModel, created) => {
-        RequestModel.get({
-          plain: true
-        })
+        return RequestModel.get('amount');
       });
     },
   },
