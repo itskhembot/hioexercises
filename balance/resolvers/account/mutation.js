@@ -2,19 +2,23 @@ import RequestModel from '../../models/request';
 
 export default {
   Mutation: {
-    updateBalance: function ({args}) {
+    updateBalance: function (obj, args) {
       return RequestModel.findOrCreate({
         where: {
-          uuid: args.request
+          uuId: args.request
         },
         defaults: {//object containing fields and values to apply
-          uuid: args.request,
+          uuId: args.request,
           accountId: args.accountid,
           amount: args.amount,
           resultSet: args.amount,
           requestType: "updateBalance",
         },
-      }).then(res => res[5][0].dataValues);
+      }).spread((RequestModel, created) => {
+        RequestModel.get({
+          plain: true
+        })
+      });
     },
   },
 };

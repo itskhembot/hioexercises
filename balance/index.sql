@@ -27,6 +27,7 @@ CREATE TABLE "VirtualBalance" (
 );
 
 CREATE TABLE "Request" (
+  "id" serial PRIMARY KEY,
   "uuId"  varchar(255),
   "accountId" integer,
   "reservedBalanceId" integer,

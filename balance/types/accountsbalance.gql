@@ -17,3 +17,14 @@ type VirtualBalance {
   context: String!
   balance: Float!
 }
+
+type Request {
+  id: ID!
+  uuId: Int!
+  accountId: Int!
+  reservedBalanceId: Int!
+  virtualBalanceId: Int!
+  amount: Float!
+  resultSet: String!
+  requestType: String!
+}
