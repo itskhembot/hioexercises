@@ -31,7 +31,7 @@ const AccountModel = sequelize.define('Account', {
 
 test('query account', async (t) => {
   const accountId = chance.integer({ max: 3, min: 1 });
-  const account = await AccountModel.findOne({ where: { id: 1 } });
+  const account = await AccountModel.findOne({ where: { id: 1 } ,raw: true});
   const { body  } = await request
     .post('/graphql')
     .send({
@@ -53,6 +53,8 @@ test('query account', async (t) => {
     .expect(200);
 
   //t.pass();
-  t.deepEqual(body.data.account.id, account.id);
+  //t.deepEqual(body.data.account.balance, account.balance);
+  //t.deepEqual(body.data.account.availableBalance, account.availableBalance);
+  t.deepEqual(body.data.account, account);
 });
 
