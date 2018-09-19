@@ -1,10 +1,10 @@
 type Mutation {
   updateBalance(request: ID!, account: ID!, amount: Float!): Float!
   createReservedBalance(request: ID!, account: ID!, context: String!, amount: Float!): ReservedBalance!
-  updateReservedBalance(request: ID!, reservedBalance: ID!, amount: Float!): ReservedBalance!
-  releaseReservedBalance(request: ID!, reservedBalance: ID!): Boolean! 
+  updateReservedBalance(request: ID!, account: ID!, context: String!, amount: Float!): ReservedBalance!
+  releaseReservedBalance(request: ID!, account: ID!, context: String!): Boolean
   createVirtualBalance(request: ID!, account: ID!, context: String!, amount: Float!): VirtualBalance!
-  updateVirtualBalance(request: ID!, virtualBalance: ID!, amount: Float!): VirtualBalance!
-  cancelVirtualBalance(request: ID!, virtualBalance: ID!): Boolean! 
-  commitVirtualBalance(request: ID!, virtualBalance: ID!): Boolean! 
+  updateVirtualBalance(request: ID!, account: ID!, context: String!, amount: Float!): VirtualBalance!
+  cancelVirtualBalance(request: ID!, account: ID!, context: String!): Boolean
+  commitVirtualBalance(request: ID!, account: ID!, context: String!): Boolean
 }
