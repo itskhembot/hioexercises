@@ -4,12 +4,11 @@ import ReservedBalanceModel from '../../models/reserved-balance';
 export default {
   Query: {
     reservedBalance: async (obj, args) => {
-      const reservedBalance =  ReservedBalanceModel.findOne({ where: { id: args.id } });
-      return reservedBalance;
+      return  ReservedBalanceModel.findOne({ where: { id: args.id } });
     },
     reservedBalances: async (obj, args) => {
-      const reservedBalances = ReservedBalanceModel.findAll({ where: { account: args.account } });
-      return reservedBalances;
+      return ReservedBalanceModel.findAll({ where: { account: args.account } });
+      
     },
   },
 };

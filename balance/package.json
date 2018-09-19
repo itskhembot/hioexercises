@@ -4,7 +4,7 @@
   "description": "Your task is to implement an API service based on the GraphQL schema given.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
     "start": "node index.js",
     "babel": "babel",
     "build": "babel src -d lib"
@@ -15,6 +15,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "apollo-server": "^2.0.7",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "chance": "^1.0.16",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.1.1",
     "koa": "^2.5.3",
@@ -26,9 +28,11 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.1",
+    "ava": "1.0.0-beta.8",
     "babel-cli": "^6.26.0",
     "babel-install": "2.1.0",
     "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "supertest": "^3.3.0"
   }
 }
