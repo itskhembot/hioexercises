@@ -3,42 +3,44 @@ import AccountModel from '../../models/account';
 export default {
   Mutation: {
     updateBalance: async (obj, args) => {
-    try{
-      let request = await RequestModel.findOne({
-        where: {
-          id: args.request
-        }
-      });
-      if (!request) {
-        const account = await AccountModel.findOne({ where: { id: args.account } })
-          .on('success', function (AccountModel) {
-            if (AccountModel) {
-              AccountModel.updateAttributes({
-                balance: args.amount
-              })}
-          });
-          let request = await RequestModel.build({
+        const request = await RequestModel.findOne({
+          where: {
+            id: args.request
+          }
+        });
+      try {
+        if (!request) {
+          const accountUpdate = await AccountModel.findOne({ where: { id: args.account } })
+            .on('success', function (AccountModel) {
+              if (AccountModel) {
+                AccountModel.updateAttributes({
+                  balance: args.amount
+                })
+              }
+            });
+          const newrequest = await RequestModel.build({
             id: args.request,
             result: args.amount
           });
-          return request.result;
+          console.log(newrequest.result);
+          return newrequest.result;
         }
-
-            //findOne if found
-            //return request.result;
-            //else
-            //updatebalance
-            //create request
-            //return result
-      return request.result;
-     }catch(err){
-      let request = await RequestModel.build({
-        id: args.request,
-        result: err.message,
-        error: err
-      });
-      return request.result;
-     }
+        //create function updateDBBalance
+        //call idempotency from updateBalance mutation that returns string?
+        //idempotency calls updatebalance to update db
+        //check result returned?
+        //return float?
+        console.log(request.result);
+        return request.result;
+      } catch (err) {
+        let request = await RequestModel.build({
+          id: args.request,
+          result: err.message,
+          error: err
+        });
+        console.log(err);
+        return 0;
+      }
     },
   },
 };
