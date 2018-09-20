@@ -7,15 +7,16 @@
     "test": "ava",
     "start": "node index.js",
     "babel": "babel",
-    "build": "babel src -d lib"
+    "build": "babel src -d build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
     "apollo-server": "^2.0.7",
-    "babel-plugin-syntax-jsx": "^6.18.0",
     "chance": "^1.0.16",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.1.1",
@@ -27,14 +28,18 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.1",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
     "ava": "1.0.0-beta.8",
-    "babel-cli": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
     "babel-install": "2.1.0",
-    "babel-preset-env": "^1.7.0",
+    "babel-loader": "^8.0.2",
     "babel-preset-stage-3": "^6.24.1",
-    "babel-register": "^6.26.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "supertest": "^3.3.0"
   },
   "ava": {
@@ -44,7 +49,21 @@
   },
   "babel": {
     "presets": [
-      "@ava/stage-4"
+      "@ava/stage-4",
+      "@babel/preset-flow"
     ]
-  }
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
+  },
+  "@babel/preset-env": {
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb-base"
+  ],
+  "presets": [
+    "@babel/preset-env"
+  ]
 }
