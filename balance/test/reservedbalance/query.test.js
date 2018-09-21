@@ -1,13 +1,17 @@
 import test from 'ava';
 import ReservedBalanceModel from '../../src/models/reserved-balance';
-const url = `http://localhost:4000/`;
+
+const url = 'http://localhost:4000/';
 const request = require('supertest')(url);
-const Chance = require('chance'),
-  chance = new Chance();
+const Chance = require('chance');
+
+const helperChance = new Chance();
 
 test('query reservedBalance', async (t) => {
-  const reservedBalanceId = chance.integer({ min: 1, max: 2 });
-  const reservedBalance = await ReservedBalanceModel.findOne({ where: { id: reservedBalanceId }, raw: true });
+  const reservedBalanceId = helperChance.integer({ min: 1, max: 2 });
+  const reservedBalance = await ReservedBalanceModel.findOne(
+    { where: { id: reservedBalanceId }, raw: true },
+  );
   const { body } = await request
     .post('/graphql')
     .send({
@@ -22,7 +26,7 @@ test('query reservedBalance', async (t) => {
       }
       `,
       variables: {
-        id: reservedBalanceId
+        id: reservedBalanceId,
       },
     })
     .expect(200);
@@ -34,8 +38,8 @@ test('query reservedBalance', async (t) => {
 });
 
 test('query reservedBalances', async (t) => {
-  const accountId = chance.integer({ min: 1, max: 2 });
-  const reservedBalances = await ReservedBalanceModel.findAll({ where: { account: accountId }, raw: true,attributes: { exclude: ['id', 'isReleased'] } });
+  const accountId = helperChance.integer({ min: 1, max: 2 });
+  const reservedBalances = await ReservedBalanceModel.findAll({ where: { account: accountId }, raw: true, attributes: { exclude: ['id', 'isReleased'] } });
   const { body } = await request
     .post('/graphql')
     .send({
@@ -49,11 +53,10 @@ test('query reservedBalances', async (t) => {
         }
         `,
       variables: {
-        id: accountId
+        id: accountId,
       },
     })
     .expect(200);
-  //t.deepEqual(body.data.reservedBalances[0][0], reservedBalances[0][0]);
-  t.deepEqual(body.data.reservedBalances,reservedBalances);
+  //  t.deepEqual(body.data.reservedBalances[0][0], reservedBalances[0][0]);
+  t.deepEqual(body.data.reservedBalances, reservedBalances);
 });
-

@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+
 export default new Sequelize('balance', 'postgres', 'yuadnat', {
   host: 'localhost',
   dialect: 'postgres',
@@ -8,7 +9,7 @@ export default new Sequelize('balance', 'postgres', 'yuadnat', {
     max: 5,
     min: 0,
     acquire: 30000,
-    idle: 10000
+    idle: 10000,
   },
 
 });

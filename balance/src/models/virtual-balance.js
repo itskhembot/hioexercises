@@ -1,4 +1,4 @@
-import sequelize from '../lib/sequelize.js';
+import sequelize from '../lib/sequelize';
 
 const VirtualBalanceModel = sequelize.define('VirtualBalance', {
   id: {

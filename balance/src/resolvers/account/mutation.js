@@ -1,13 +1,14 @@
 import RequestModel from '../../models/request';
 import AccountModel from '../../models/account';
+
 export default {
   Mutation: {
     updateBalance: async (obj, args) => {
-        const request = await RequestModel.findOne({
-          where: {
-            id: args.request
-          }
-        });
+      const request = await RequestModel.findOne({
+        where: {
+          id: args.request
+        }
+      });
       try {
         if (!request) {
           const accountUpdate = await AccountModel.findOne({ where: { id: args.account } })

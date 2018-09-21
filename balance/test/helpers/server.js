@@ -1,8 +1,8 @@
-const { ApolloServer, gql } = require('apollo-server-koa');
-import graphql from './graphql';
-import Koa from 'koa';
-import bodyparser from 'koa-bodyparser';
 import cors from '@koa/cors';
+import bodyparser from 'koa-bodyparser';
+import Koa from 'koa';
+import graphql from './graphql';
+
 const koa = new Koa();
 let server = null;
 
@@ -15,7 +15,7 @@ async function start({ port = 8888 } = { port: 8888 }) {
     }
   });
 
- 
+
   koa.use(bodyparser());
   koa.use(cors({ maxAge: 2592000 }));
   koa.use(graphql);

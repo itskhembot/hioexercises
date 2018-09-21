@@ -1,4 +1,4 @@
-import sequelize from '../lib/sequelize.js';
+import sequelize from '../lib/sequelize';
 
 const ReservedBalanceModel = sequelize.define('ReservedBalance', {
   id: {
