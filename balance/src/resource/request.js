@@ -7,7 +7,7 @@ export default {
     if (request) {
       if (request.result) {
         return request.result;
-      } else if (request.error) {
+      } if (request.error) {
         throw new Error(request.error.message);
       }
     } else {
@@ -25,6 +25,6 @@ export default {
       });
       return result;
     }
-
-  }
+    return request.result;
+  },
 };

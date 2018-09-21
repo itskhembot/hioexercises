@@ -1,5 +1,3 @@
-import '@babel/polyfill';
-
 const { ApolloServer } = require('apollo-server');
 const { makeExecutableSchema } = require('graphql-tools');
 const path = require('path');
@@ -20,8 +18,14 @@ const schema = makeExecutableSchema({
   ),
 });
 
-const server = new ApolloServer({ schema });
+const apollo = new ApolloServer({ schema });
 
-server.listen().then(({ url }) => {
-  console.log(`??  Server ready at ${url}`);
-});
+async function start() {
+  return apollo.listen().then(({ server }) => server);
+}
+async function stop() {
+  await new Promise((resolve) => {
+    apollo.listen(4000, 'localhost').then(({ server }) => server.close(resolve));
+  });
+}
+module.exports = { start, stop };

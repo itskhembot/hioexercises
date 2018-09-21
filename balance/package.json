@@ -4,10 +4,11 @@
   "description": "Your task is to implement an API service based on the GraphQL schema given.",
   "main": "index.js",
   "scripts": {
-    "test": "ava",
-    "start": "node index.js",
+    "test": "ava -verbose",
+    "start": "node -r @babel/register src/start.js",
     "babel": "babel",
-    "build": "babel src -d build"
+    "build": "babel src -d build",
+    "lint" : "eslint --fix --ignore-path .gitignore ."
   },
   "keywords": [],
   "author": "",
@@ -16,17 +17,11 @@
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
-    "@koa/cors": "^2.2.2",
     "apollo-server": "^2.0.7",
-    "apollo-server-koa": "^2.1.0",
     "chance": "^1.0.16",
     "graphql": "^14.0.2",
     "graphql-middleware": "^1.7.2",
     "graphql-tools": "^3.1.1",
-    "koa": "^2.5.3",
-    "koa-bodyparser": "^4.2.1",
-    "koa-compose": "^4.1.0",
-    "koa-router": "^7.4.0",
     "merge-graphql-schemas": "^1.5.4",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
@@ -52,12 +47,6 @@
   "ava": {
     "require": [
       "@babel/register"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "@ava/stage-4",
-      "@babel/preset-flow"
     ]
   },
   "resolutions": {

@@ -1,5 +1,3 @@
-require('@babel/register')({
-  presets: ['@babel/preset-env'],
-});
+import server from './index';
 
-module.exports = require('./index.js');
+server.start();

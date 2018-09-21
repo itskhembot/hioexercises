@@ -1,16 +1,23 @@
+import supertest from 'supertest';
 import test from 'ava';
+import server from '../../src/index';
 import ReservedBalanceModel from '../../src/models/reserved-balance';
 
-const url = 'http://localhost:4000/';
-const request = require('supertest')(url);
+let request;
+// const url = 'http://localhost:4000/';
+// const request = require('supertest')(url);
 const Chance = require('chance');
 
 const helperChance = new Chance();
 
+test.before(async () => {
+  request = supertest(await server.start());
+});
+
 test('query reservedBalance', async (t) => {
   const reservedBalanceId = helperChance.integer({ min: 1, max: 2 });
   const reservedBalance = await ReservedBalanceModel.findOne(
-    { where: { id: reservedBalanceId }, raw: true },
+    { where: { id: reservedBalanceId }, raw: true, attributes: { exclude: ['isReleased'] } },
   );
   const { body } = await request
     .post('/graphql')
@@ -31,10 +38,8 @@ test('query reservedBalance', async (t) => {
     })
     .expect(200);
 
-  t.deepEqual(body.data.reservedBalance.balance, reservedBalance.balance);
-  t.deepEqual(body.data.reservedBalance.context, reservedBalance.context);
-  t.deepEqual(body.data.reservedBalance.account, reservedBalance.account);
-  t.deepEqual(body.data.reservedBalance.id, reservedBalance.id.toString());
+  reservedBalance.id = reservedBalance.id.toString();
+  t.deepEqual(body.data.reservedBalance, reservedBalance);
 });
 
 test('query reservedBalances', async (t) => {
@@ -57,6 +62,10 @@ test('query reservedBalances', async (t) => {
       },
     })
     .expect(200);
-  //  t.deepEqual(body.data.reservedBalances[0][0], reservedBalances[0][0]);
+
   t.deepEqual(body.data.reservedBalances, reservedBalances);
 });
+
+// test.after(async () => {
+//   await server.stop();
+// });
