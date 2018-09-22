@@ -67,6 +67,6 @@ test('query reservedBalances', async (t) => {
   t.deepEqual(body.data.reservedBalances, reservedBalances);
 });
 
-// test.after(async () => {
-//   await server.stop();
-// });
+test.after(async () => {
+  await server.stop();
+});

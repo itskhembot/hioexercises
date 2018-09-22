@@ -39,6 +39,6 @@ test('query account', async (t) => {
   t.deepEqual(body.data.account, account);
 });
 
-// test.after(async () => {
-//   await server.stop(port);
-// });
+test.after(async () => {
+  await server.stop();
+});

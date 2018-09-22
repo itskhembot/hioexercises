@@ -23,7 +23,7 @@ const apollo = new ApolloServer({ schema });
 async function start(port) {
   return apollo.listen(port).then(({ server }) => server);
 }
-async function stop(port) {
-  await new Promise(resolve => apollo.listen(port).then(({ server }) => server.close(resolve)));
+async function stop() {
+  return new Promise(resolve => apollo.listen().then(({ server }) => server.close(resolve)));
 }
 module.exports = { start, stop };
