@@ -9,9 +9,9 @@ let request;
 const Chance = require('chance');
 
 const helperChance = new Chance();
-
+const port = helperChance.integer({ max: 9000, min: 5000 });
 test.before(async () => {
-  request = supertest(await server.start());
+  request = supertest(await server.start(port));
 });
 
 test('query account', async (t) => {
@@ -40,5 +40,5 @@ test('query account', async (t) => {
 });
 
 // test.after(async () => {
-//   await server.stop();
+//   await server.stop(port);
 // });

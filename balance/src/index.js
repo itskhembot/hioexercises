@@ -20,12 +20,10 @@ const schema = makeExecutableSchema({
 
 const apollo = new ApolloServer({ schema });
 
-async function start() {
-  return apollo.listen().then(({ server }) => server);
+async function start(port) {
+  return apollo.listen(port).then(({ server }) => server);
 }
-async function stop() {
-  await new Promise((resolve) => {
-    apollo.listen(4000, 'localhost').then(({ server }) => server.close(resolve));
-  });
+async function stop(port) {
+  await new Promise(resolve => apollo.listen(port).then(({ server }) => server.close(resolve)));
 }
 module.exports = { start, stop };
