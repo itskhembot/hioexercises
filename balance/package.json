@@ -8,7 +8,7 @@
     "start": "node -r @babel/register src/start.js",
     "babel": "babel",
     "build": "babel src -d build",
-    "lint" : "eslint --fix --ignore-path .gitignore ."
+    "lint": "eslint --fix --ignore-path .gitignore ."
   },
   "keywords": [],
   "author": "",

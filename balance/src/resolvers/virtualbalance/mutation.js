@@ -1,4 +1,3 @@
-//   import RequestModel from '../../models/request';
 import VirtualBalanceModel from '../../models/virtual-balance';
 
 export default {

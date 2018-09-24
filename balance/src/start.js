@@ -1,3 +1,3 @@
 import server from './index';
 
-server.start();
+server.start(4000);

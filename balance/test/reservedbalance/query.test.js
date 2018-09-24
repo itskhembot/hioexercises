@@ -4,8 +4,6 @@ import server from '../../src/index';
 import ReservedBalanceModel from '../../src/models/reserved-balance';
 
 let request;
-// const url = 'http://localhost:4000/';
-// const request = require('supertest')(url);
 const Chance = require('chance');
 
 const helperChance = new Chance();

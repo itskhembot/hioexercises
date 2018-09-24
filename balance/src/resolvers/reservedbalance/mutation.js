@@ -1,4 +1,3 @@
-//  import RequestModel from '../../models/request';
 import ReservedBalanceModel from '../../models/reserved-balance';
 
 export default {

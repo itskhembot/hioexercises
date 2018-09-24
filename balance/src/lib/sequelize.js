@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
 export default new Sequelize('balance', 'postgres', 'yuadnat', {
   host: 'localhost',

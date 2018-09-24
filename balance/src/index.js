@@ -1,7 +1,9 @@
-const { ApolloServer } = require('apollo-server');
-const { makeExecutableSchema } = require('graphql-tools');
-const path = require('path');
-const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
+import { ApolloServer } from 'apollo-server';
+import { makeExecutableSchema } from 'graphql-tools';
+import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
+// import express from 'express';
+import path from 'path';
+// import http from 'http';
 
 const schema = makeExecutableSchema({
   typeDefs: mergeTypes(
@@ -20,10 +22,14 @@ const schema = makeExecutableSchema({
 
 const apollo = new ApolloServer({ schema });
 
+let { apollorun } = apollo;
+
 async function start(port) {
-  return apollo.listen(port).then(({ server }) => server);
+  apollorun = await apollo.listen(port).then(({ server }) => server);
+  return apollorun;
 }
+
 async function stop() {
-  return new Promise(resolve => apollo.listen().then(({ server }) => server.close(resolve)));
+  return new Promise(resolve => apollorun.close(resolve));
 }
 module.exports = { start, stop };
