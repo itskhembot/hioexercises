@@ -1,9 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 import { makeExecutableSchema } from 'graphql-tools';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
-// import express from 'express';
 import path from 'path';
-// import http from 'http';
 
 const schema = makeExecutableSchema({
   typeDefs: mergeTypes(
