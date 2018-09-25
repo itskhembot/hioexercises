@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import test from 'ava';
+import uuid from 'uuid';
 import server from '../../src/index';
-import guid from '../helpers/guid';
 
 let request;
 const Chance = require('chance');
@@ -16,7 +16,7 @@ test('update balance', async (t) => {
   const accountId = helperChance.integer({ min: 1, max: 3 });
   const balance = helperChance.integer({ min: 50, max: 500 });
   const input = {
-    request: guid.toString(),
+    request: uuid(),
     account: accountId,
     amount: balance,
   };

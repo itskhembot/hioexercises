@@ -14,7 +14,7 @@ module.exports = {
     let result;
     let error;
     try {
-      result = await handler(args);
+      result = await handler(null, args);
     } catch (err) {
       error = err;
       result = err;

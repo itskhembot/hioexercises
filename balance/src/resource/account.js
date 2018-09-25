@@ -6,7 +6,7 @@ module.exports = {
     let val;
     try {
       if (account) {
-        AccountModel.update({
+        await AccountModel.update({
           balance: args.amount,
         }, { where: { id: args.account } });
         val = args.amount;
