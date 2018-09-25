@@ -12,4 +12,4 @@ const ReservedBalanceModel = sequelize.define('ReservedBalance', {
   isReleased: sequelize.Sequelize.BOOLEAN,
 }, { tableName: 'ReservedBalance', freezeTableName: true, timestamps: false });
 
-export default ReservedBalanceModel;
+module.exports = ReservedBalanceModel;

@@ -1,6 +1,6 @@
 import VirtualBalanceModel from '../../models/virtual-balance';
 
-export default {
+module.exports = {
   Mutation: {
     createVirtualBalance: async (obj, args) => {
       const createVirtualBalance = VirtualBalanceModel.create({

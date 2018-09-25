@@ -12,4 +12,4 @@ const VirtualBalanceModel = sequelize.define('VirtualBalance', {
   isCommit: sequelize.Sequelize.BOOLEAN,
 }, { tableName: 'VirtualBalance', freezeTableName: true, timestamps: false });
 
-export default VirtualBalanceModel;
+module.exports = VirtualBalanceModel;

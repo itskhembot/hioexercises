@@ -1,7 +1,7 @@
 import ReservedBalanceModel from '../../models/reserved-balance';
 
 
-export default {
+module.exports = {
   Query: {
     reservedBalance: async (obj, args) => (
       ReservedBalanceModel.findOne({ where: { id: args.id } })),

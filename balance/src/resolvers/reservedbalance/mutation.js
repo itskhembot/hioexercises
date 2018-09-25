@@ -1,6 +1,6 @@
 import ReservedBalanceModel from '../../models/reserved-balance';
 
-export default {
+module.exports = {
   Mutation: {
     createReservedBalance: async (obj, args) => {
       const createReservedBalance = ReservedBalanceModel.create({

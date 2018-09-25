@@ -1,7 +1,7 @@
 import AccountModel from '../../models/account';
 
 
-export default {
+module.exports = {
   Query: {
     account: async (obj, args) => (
       AccountModel.findOne({ where: { id: args.id } })),

@@ -10,4 +10,4 @@ const AccountModel = sequelize.define('Account', {
   availableBalance: sequelize.Sequelize.DOUBLE,
 }, { tableName: 'Account', freezeTableName: true, timestamps: false });
 
-export default AccountModel;
+module.exports = AccountModel;
