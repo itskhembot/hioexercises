@@ -3,14 +3,14 @@ import test from 'ava';
 import server from '../../src/index';
 import VirtualBalanceModel from '../../src/models/virtual-balance';
 
-let request;
+let superserver;
 const Chance = require('chance');
 
 const helperChance = new Chance();
 const port = helperChance.integer({ max: 9000, min: 5000 });
 
 test.before(async () => {
-  request = supertest(await server.start(port));
+  superserver = supertest(await server.start(port));
 });
 
 test('query virtualBalance', async (t) => {
@@ -18,7 +18,7 @@ test('query virtualBalance', async (t) => {
   const virtualBalance = await VirtualBalanceModel.findOne(
     { where: { id: virtualBalanceId }, raw: true, attributes: { exclude: ['isCommit'] } },
   );
-  const { body } = await request
+  const { body } = await superserver
     .post('/graphql')
     .send({
       query: `
@@ -46,7 +46,7 @@ test('query virtualBalances', async (t) => {
   const virtualBalances = await VirtualBalanceModel.findAll(
     { where: { account: accountId }, raw: true, attributes: { exclude: ['id', 'isCommit'] } },
   );
-  const { body } = await request
+  const { body } = await superserver
     .post('/graphql')
     .send({
       query: `

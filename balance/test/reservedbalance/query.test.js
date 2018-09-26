@@ -3,14 +3,14 @@ import test from 'ava';
 import server from '../../src/index';
 import ReservedBalanceModel from '../../src/models/reserved-balance';
 
-let request;
+let superserver;
 const Chance = require('chance');
 
 const helperChance = new Chance();
 const port = helperChance.integer({ max: 9000, min: 5000 });
 
 test.before(async () => {
-  request = supertest(await server.start(port));
+  superserver = supertest(await server.start(port));
 });
 
 test('query reservedBalance', async (t) => {
@@ -18,7 +18,7 @@ test('query reservedBalance', async (t) => {
   const reservedBalance = await ReservedBalanceModel.findOne(
     { where: { id: reservedBalanceId }, raw: true, attributes: { exclude: ['isReleased'] } },
   );
-  const { body } = await request
+  const { body } = await superserver
     .post('/graphql')
     .send({
       query: `
@@ -44,7 +44,7 @@ test('query reservedBalance', async (t) => {
 test('query reservedBalances', async (t) => {
   const accountId = helperChance.integer({ min: 1, max: 2 });
   const reservedBalances = await ReservedBalanceModel.findAll({ where: { account: accountId }, raw: true, attributes: { exclude: ['id', 'isReleased'] } });
-  const { body } = await request
+  const { body } = await superserver
     .post('/graphql')
     .send({
       query: `

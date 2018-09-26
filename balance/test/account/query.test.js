@@ -3,19 +3,19 @@ import test from 'ava';
 import server from '../../src/index';
 import AccountModel from '../../src/models/account';
 
-let request;
+let superserver;
 const Chance = require('chance');
 
 const helperChance = new Chance();
 const port = helperChance.integer({ max: 9000, min: 5000 });
 test.before(async () => {
-  request = supertest(await server.start(port));
+  superserver = supertest(await server.start(port));
 });
 
 test('query account', async (t) => {
   const accountId = helperChance.integer({ min: 1, max: 3 });
   const account = await AccountModel.findOne({ where: { id: accountId }, raw: true });
-  const { body } = await request
+  const { body } = await superserver
     .post('/graphql')
     .send({
       query: `
