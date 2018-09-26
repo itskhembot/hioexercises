@@ -14,7 +14,7 @@ test.before(async () => {
 
 test('update balance', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 3 });
+  const account = helperChance.integer({ min: 1, max: 11 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const { body } = await superserver
     .post('/graphql')

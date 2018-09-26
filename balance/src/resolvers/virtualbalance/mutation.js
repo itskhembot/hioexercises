@@ -1,15 +1,19 @@
-import VirtualBalanceModel from '../../models/virtual-balance';
+import request from '../../resource/request';
+import virtualBalance from '../../resource/virtualbalance';
 
 module.exports = {
   Mutation: {
-    createVirtualBalance: async (obj, args) => {
-      const createVirtualBalance = VirtualBalanceModel.create({
-        account: args.account,
-        context: args.context,
-        balance: args.amount,
-
-      });
-      return createVirtualBalance;
-    },
+    createVirtualBalance: async (obj, args) => (
+      request.idempotency(args, virtualBalance.createVirtual)
+    ),
+    updateVirtualBalance: async (obj, args) => (
+      request.idempotency(args, virtualBalance.updateVirtual)
+    ),
+    cancelVirtualBalance: async (obj, args) => (
+      request.idempotency(args, virtualBalance.cancelVirtual)
+    ),
+    commitVirtualBalance: async (obj, args) => (
+      request.idempotency(args, virtualBalance.commitVirtual)
+    ),
   },
 };

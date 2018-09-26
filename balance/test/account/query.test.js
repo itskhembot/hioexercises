@@ -13,7 +13,7 @@ test.before(async () => {
 });
 
 test('query account', async (t) => {
-  const accountId = helperChance.integer({ min: 1, max: 3 });
+  const accountId = helperChance.integer({ min: 1, max: 11 });
   const account = await AccountModel.findOne({ where: { id: accountId }, raw: true });
   const { body } = await superserver
     .post('/graphql')

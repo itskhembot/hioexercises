@@ -1,15 +1,16 @@
-import ReservedBalanceModel from '../../models/reserved-balance';
+import request from '../../resource/request';
+import reservedBalance from '../../resource/reservedbalance';
 
 module.exports = {
   Mutation: {
-    createReservedBalance: async (obj, args) => {
-      const createReservedBalance = ReservedBalanceModel.create({
-        account: args.account,
-        context: args.context,
-        balance: args.amount,
-
-      });
-      return createReservedBalance;
-    },
+    createReservedBalance: async (obj, args) => (
+      request.idempotency(args, reservedBalance.createReserved)
+    ),
+    updateReservedBalance: async (obj, args) => (
+      request.idempotency(args, reservedBalance.updateReserved)
+    ),
+    releaseReservedBalance: async (obj, args) => (
+      request.idempotency(args, reservedBalance.releaseReserved)
+    ),
   },
 };
