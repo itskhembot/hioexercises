@@ -99,4 +99,6 @@ export async function up(queryInterface) {
   }))(R.range(1, 5)));
 }
 
-export async function down() {} // eslint-disable-line
+export async function down(queryInterface) {
+  return queryInterface.bulkDelete('Account', null, {});
+}
