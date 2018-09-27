@@ -6,8 +6,9 @@ module.exports = {
     let val;
     try {
       if (account) {
+        const bal = account.balance + args.amount;
         await AccountModel.update({
-          balance: args.amount,
+          balance: bal,
         }, { where: { id: args.account } });
         val = args.amount;
       }
