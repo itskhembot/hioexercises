@@ -5,6 +5,7 @@ module.exports = {
     database: 'balance',
     host: '127.0.0.1',
     dialect: 'postgres',
+    operatorsAliases: false,
   },
   local: {
     username: 'postgres',
@@ -12,6 +13,7 @@ module.exports = {
     database: 'balance',
     host: '127.0.0.1',
     dialect: 'postgres',
+    operatorsAliases: false,
   },
   development: {
     username: 'postgres',
@@ -19,5 +21,6 @@ module.exports = {
     database: 'balance',
     host: '127.0.0.1',
     dialect: 'postgres',
+    operatorsAliases: false,
   },
 };
