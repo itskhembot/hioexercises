@@ -1,5 +1,5 @@
 import request from '../../resource/request';
-import reservedBalance from '../../resource/reservedbalance';
+import reservedBalance from '../../resource/reserved-balance';
 
 module.exports = {
   Mutation: {

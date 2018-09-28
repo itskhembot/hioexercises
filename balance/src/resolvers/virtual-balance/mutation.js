@@ -1,5 +1,5 @@
 import request from '../../resource/request';
-import virtualBalance from '../../resource/virtualbalance';
+import virtualBalance from '../../resource/virtual-balance';
 
 module.exports = {
   Mutation: {
