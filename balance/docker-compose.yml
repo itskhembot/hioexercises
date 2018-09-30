@@ -2,6 +2,11 @@ version: '3'
 services:
   web:
     build: .
+    command: node -r @babel/register node_modules/.bin/sequelize db:create
+    command: node -r @babel/register node_modules/.bin/sequelize db:migrate
+    command: node -r @babel/register node_modules/.bin/sequelize db:seed:all
+    command: npm run lint
+    command: npm run test
     command: npm run start
     volumes:
       - .:/src/
