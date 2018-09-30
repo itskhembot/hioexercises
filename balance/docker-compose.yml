@@ -1,9 +1,17 @@
 version: '3'
-
 services:
-
+  web:
+    build: .
+    command: npm run start
+    volumes:
+      - .:/src/
+      - /hioexercises/balance/node_modules
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
   postgres:
-
-    image: postgres:10.5
-
-    ports: 
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: yuadnat
