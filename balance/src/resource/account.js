@@ -3,18 +3,16 @@ import AccountModel from '../models/account';
 module.exports = {
   updateBalanceTable: async (obj, args) => {
     const account = await AccountModel.findOne({ where: { id: args.account } });
-    let val;
     try {
       if (account) {
-        const bal = account.balance + args.amount;
         await AccountModel.update({
-          balance: bal,
+          balance: account.balance + args.amount,
         }, { where: { id: args.account } });
-        val = args.amount;
+        return account.balance + args.amount;
       }
     } catch (err) {
-      val = err.message;
+      throw new Error(err.message);
     }
-    return val;
+    return 0;
   },
 };

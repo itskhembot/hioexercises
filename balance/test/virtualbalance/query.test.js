@@ -14,7 +14,7 @@ test.before(async () => {
 });
 
 test('query virtualBalance', async (t) => {
-  const virtualBalanceId = helperChance.integer({ min: 1, max: 2 });
+  const virtualBalanceId = helperChance.integer({ min: 1, max: 30 });
   const virtualBalance = await VirtualBalanceModel.findOne(
     { where: { id: virtualBalanceId }, raw: true, attributes: { exclude: ['isCommit'] } },
   );
@@ -42,7 +42,7 @@ test('query virtualBalance', async (t) => {
 });
 
 test('query virtualBalances', async (t) => {
-  const accountId = helperChance.integer({ min: 1, max: 2 });
+  const accountId = helperChance.integer({ min: 1, max: 10 });
   const virtualBalances = await VirtualBalanceModel.findAll(
     { where: { account: accountId }, raw: true, attributes: { exclude: ['id', 'isCommit'] } },
   );

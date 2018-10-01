@@ -14,7 +14,7 @@ test.before(async () => {
 });
 
 test('query reservedBalance', async (t) => {
-  const reservedBalanceId = helperChance.integer({ min: 1, max: 2 });
+  const reservedBalanceId = helperChance.integer({ min: 1, max: 30 });
   const reservedBalance = await ReservedBalanceModel.findOne(
     { where: { id: reservedBalanceId }, raw: true, attributes: { exclude: ['isReleased'] } },
   );
@@ -42,7 +42,7 @@ test('query reservedBalance', async (t) => {
 });
 
 test('query reservedBalances', async (t) => {
-  const accountId = helperChance.integer({ min: 1, max: 2 });
+  const accountId = helperChance.integer({ min: 1, max: 10 });
   const reservedBalances = await ReservedBalanceModel.findAll({ where: { account: accountId }, raw: true, attributes: { exclude: ['id', 'isReleased'] } });
   const { body } = await superserver
     .post('/graphql')

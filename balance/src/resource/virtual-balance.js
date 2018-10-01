@@ -1,85 +1,54 @@
-import virtualBalanceModel from '../models/virtual-balance';
+import VirtualBalanceModel from '../models/virtual-balance';
 
 
 module.exports = {
   createVirtual: async (obj, args) => {
-    const virtualBalance = await virtualBalanceModel.findOne({
-      where: {
+    let virtualBalance;
+    try {
+      virtualBalance = await VirtualBalanceModel.create({
         account: args.account,
         context: args.context,
-      },
-    });
-    let val;
-    try {
-      if (!virtualBalance) {
-        val = await virtualBalanceModel.create({
-          account: args.account,
-          context: args.context,
-          balance: args.amount,
-        });
-      } else {
-        throw new Error('Reserve already exists!');
-      }
+        balance: args.amount,
+      });
     } catch (err) {
-      val = err.message;
+      virtualBalance = err.message;
     }
-    return val;
+    return virtualBalance;
   },
   updateVirtual: async (obj, args) => {
-    const virtualBalance = await virtualBalanceModel.findOne({
-      where: {
-        account: args.account,
-        context: args.context,
-      },
-    });
-    let val;
+    let virtualBalance;
     try {
-      if (virtualBalance) {
-        val = await virtualBalance.update({
-          balance: args.amount,
-        }, { where: { account: args.account, context: args.context } });
-      }
+      await VirtualBalanceModel.update({
+        balance: args.amount,
+      }, {
+        where: { account: args.account, context: args.context },
+        returning: true,
+        }).then(([rowsUpdate, [updatedVirtualBalance]]) => {// eslint-disable-line
+        virtualBalance = updatedVirtualBalance;
+      });
     } catch (err) {
-      val = err.message;
+      virtualBalance = err.message;
     }
-    return val;
+    return virtualBalance;
   },
   cancelVirtual: async (obj, args) => {
-    const virtualBalance = await virtualBalanceModel.findOne({
-      where: {
-        account: args.account,
-        context: args.context,
-      },
-    });
-    let val;
     try {
-      if (virtualBalance) {
-        await virtualBalance.destroy({ where: { account: args.account, context: args.context } });
-        val = true;
-      }
+      await VirtualBalanceModel.destroy(
+        { where: { account: args.account, context: args.context } },
+      );
     } catch (err) {
-      val = err.message;
+      return err.message;
     }
-    return val;
+    return true;
   },
   commitVirtual: async (obj, args) => {
-    const virtualBalance = await virtualBalanceModel.findOne({
-      where: {
-        account: args.account,
-        context: args.context,
-      },
-    });
-    let val;
     try {
-      if (virtualBalance) {
-        await virtualBalance.update({
-          isCommit: true,
-        }, { where: { account: args.account, context: args.context } });
-        val = true;
-      }
+      await VirtualBalanceModel.update({
+        isCommit: true,
+      }, { where: { account: args.account, context: args.context } });
     } catch (err) {
-      val = err.message;
+      return err.message;
     }
-    return val;
+    return true;
   },
 };

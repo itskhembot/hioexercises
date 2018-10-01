@@ -15,7 +15,7 @@ test.before(async () => {
 });
 test('create virtual', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const context = casual.sentence;
 
@@ -47,7 +47,7 @@ test('create virtual', async (t) => {
 
 test('update virtual', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const virtualBalance = await VirtualBalanceModel.findOne(
     { where: { account } },
@@ -80,7 +80,7 @@ test('update virtual', async (t) => {
 
 test('cancel virtual', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const virtualBalance = await VirtualBalanceModel.findOne(
     { where: { account } },
@@ -107,7 +107,7 @@ test('cancel virtual', async (t) => {
 
 test('commit virtual', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const virtualBalance = await VirtualBalanceModel.findOne(
     { where: { account } },

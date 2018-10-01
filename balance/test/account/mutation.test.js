@@ -2,6 +2,7 @@ import supertest from 'supertest';
 import test from 'ava';
 import uuid from 'uuid';
 import server from '../../src/index';
+import AccountModel from '../../src/models/account';
 
 let superserver;
 const Chance = require('chance');
@@ -14,8 +15,11 @@ test.before(async () => {
 
 test('update balance', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 40 });
   const amount = helperChance.integer({ min: 50, max: 500 });
+  const accountModel = await AccountModel.findOne(
+    { where: { id: account } },
+  );
   const { body } = await superserver
     .post('/graphql')
     .send({
@@ -32,7 +36,7 @@ test('update balance', async (t) => {
     })
     .expect(200);
 
-  t.is(body.data.updateBalance, amount);
+  t.is(body.data.updateBalance, accountModel.balance + amount);
 });
 
 test.after(async () => {

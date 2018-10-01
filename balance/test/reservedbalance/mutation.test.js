@@ -15,7 +15,7 @@ test.before(async () => {
 });
 test('create reserve', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const context = casual.sentence;
 
@@ -47,7 +47,7 @@ test('create reserve', async (t) => {
 
 test('update reserve', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const reservedBalance = await ReservedBalanceModel.findOne(
     { where: { account } }, { raw: true },
@@ -80,7 +80,7 @@ test('update reserve', async (t) => {
 
 test('release reserve', async (t) => {
   const request = uuid().toString();
-  const account = helperChance.integer({ min: 1, max: 11 });
+  const account = helperChance.integer({ min: 1, max: 10 });
   const amount = helperChance.integer({ min: 50, max: 500 });
   const reservedBalance = await ReservedBalanceModel.findOne(
     { where: { account } },

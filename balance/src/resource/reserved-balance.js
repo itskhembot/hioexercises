@@ -1,67 +1,43 @@
 import ReservedBalanceModel from '../models/reserved-balance';
 
-
 module.exports = {
   createReserved: async (obj, args) => {
-    const reservedBalance = await ReservedBalanceModel.findOne({
-      where: {
+    let reservedBalance;
+    try {
+      reservedBalance = await ReservedBalanceModel.create({
         account: args.account,
         context: args.context,
-      },
-    });
-    let val;
-    try {
-      if (!reservedBalance) {
-        val = await ReservedBalanceModel.create({
-          account: args.account,
-          context: args.context,
-          balance: args.amount,
-        });
-      } else {
-        throw new Error('Reserve already exists!');
-      }
+        balance: args.amount,
+      });
     } catch (err) {
-      val = err.message;
+      reservedBalance = err.message;
     }
-    return val;
+    return reservedBalance;
   },
   updateReserved: async (obj, args) => {
-    const reservedBalance = await ReservedBalanceModel.findOne({
-      where: {
-        account: args.account,
-        context: args.context,
-      },
-    });
-    let val;
+    let reservedBalance;
     try {
-      if (reservedBalance) {
-        val = await reservedBalance.update({
-          balance: args.amount,
-        }, { where: { account: args.account, context: args.context } });
-      }
+      await ReservedBalanceModel.update({
+        balance: args.amount,
+      }, {
+        where: { account: args.account, context: args.context },
+        returning: true,
+      }).then(([rowsUpdate, [updatedReservedBalance]]) => {// eslint-disable-line
+        reservedBalance = updatedReservedBalance;
+      });
     } catch (err) {
-      val = err.message;
+      reservedBalance = err.message;
     }
-    return val;
+    return reservedBalance;
   },
   releaseReserved: async (obj, args) => {
-    const reservedBalance = await ReservedBalanceModel.findOne({
-      where: {
-        account: args.account,
-        context: args.context,
-      },
-    });
-    let val;
     try {
-      if (reservedBalance) {
-        await reservedBalance.update({
-          isReleased: true,
-        }, { where: { account: args.account, context: args.context } });
-        val = true;
-      }
+      await ReservedBalanceModel.update({
+        isReleased: true,
+      }, { where: { account: args.account, context: args.context } });
     } catch (err) {
-      val = err.message;
+      return err.message;
     }
-    return val;
+    return true;
   },
 };
