@@ -7,8 +7,14 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       autoIncrement: true,
     },
-    balance: Sequelize.Sequelize.DOUBLE,
-    availableBalance: Sequelize.Sequelize.DOUBLE,
+    balance: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
+    availableBalance: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
   });
 }
 
