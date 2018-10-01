@@ -1,4 +1,4 @@
-'use strict';
+'use strict';// eslint-disable-line
 
 export async function up(queryInterface, Sequelize) {
   await queryInterface.createTable('Account', {
