@@ -1,14 +1,20 @@
 'use strict';// eslint-disable-line
 
 export async function up(queryInterface, Sequelize) {
-  await queryInterface.createTable('Account', {
+  await queryInterface.changeColumn('Account', {
     id: {
-      type: Sequelize.Sequelize.INTEGER,
+      type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    balance: Sequelize.Sequelize.DOUBLE,
-    availableBalance: Sequelize.Sequelize.DOUBLE,
+    balance: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
+    availableBalance: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
   });
 }
 

@@ -7,27 +7,10 @@ export async function up(queryInterface, Sequelize) {
       primaryKey: true,
       autoIncrement: true,
     },
-    account: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-    context: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    balance: {
-      type: Sequelize.DOUBLE,
-      allowNull: false,
-    },
-    isCommit: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-      allowNull: false,
-    },
-  });
-  await queryInterface.addConstraint('VirtualBalance', ['account', 'context'], {
-    type: 'unique',
-    name: 'account-context-constraint',
+    account: Sequelize.Sequelize.INTEGER,
+    context: Sequelize.Sequelize.STRING,
+    balance: Sequelize.Sequelize.DOUBLE,
+    isCommit: Sequelize.Sequelize.BOOLEAN,
   });
 }
 

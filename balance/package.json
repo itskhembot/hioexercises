@@ -4,7 +4,7 @@
   "description": "Your task is to implement an API service based on the GraphQL schema given.",
   "main": "index.js",
   "scripts": {
-    "test": "ava -- -verbose",
+    "test": "NODE_ENV=test ava -- -verbose",
     "start": "node -r @babel/register src/start.js",
     "babel": "babel",
     "build": "babel src -d build",
