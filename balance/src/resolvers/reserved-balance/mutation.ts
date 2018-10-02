@@ -1,7 +1,7 @@
 import request from '../../resource/request';
 import reservedBalance from '../../resource/reserved-balance';
 
-module.exports = {
+export default {
   Mutation: {
     createReservedBalance: async (obj, args) => (
       request.idempotency(args, reservedBalance.createReserved)

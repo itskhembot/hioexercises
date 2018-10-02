@@ -1,7 +1,7 @@
 import request from '../../resource/request';
 import account from '../../resource/account';
 
-module.exports = {
+export default {
   Mutation: {
     updateBalance: async (obj, args) => (
       request.idempotency(args, account.updateBalanceTable)
