@@ -1,7 +1,7 @@
 import VirtualBalanceModel from '../models/virtual-balance';
 
 
-module.exports = {
+export default {
   createVirtual: async (obj, args) => {
     let virtualBalance;
     try {

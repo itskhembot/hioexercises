@@ -1,6 +1,6 @@
 import sequelize from '../lib/sequelize';
 
-const VirtualBalanceModel = sequelize.define('VirtualBalance', {
+const ReservedBalanceModel = sequelize.define('ReservedBalance', {
   id: {
     type: sequelize.Sequelize.INTEGER,
     primaryKey: true,
@@ -9,7 +9,7 @@ const VirtualBalanceModel = sequelize.define('VirtualBalance', {
   account: sequelize.Sequelize.INTEGER,
   context: sequelize.Sequelize.STRING,
   balance: sequelize.Sequelize.DOUBLE,
-  isCommit: sequelize.Sequelize.BOOLEAN,
-}, { tableName: 'VirtualBalance', freezeTableName: true, timestamps: false });
+  isReleased: sequelize.Sequelize.BOOLEAN,
+}, { tableName: 'ReservedBalance', freezeTableName: true, timestamps: false });
 
-module.exports = VirtualBalanceModel;
+export default new ReservedBalanceModel;

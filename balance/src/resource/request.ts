@@ -1,6 +1,6 @@
 import RequestModel from '../models/request';
 
-module.exports = {
+export default {
   idempotency: async (args, handler) => {
     const request = await RequestModel.findOne({ where: { id: args.request } });
     if (request && request.result) {

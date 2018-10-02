@@ -1,6 +1,6 @@
 import ReservedBalanceModel from '../models/reserved-balance';
 
-module.exports = {
+export default {
   createReserved: async (obj, args) => {
     let reservedBalance;
     try {

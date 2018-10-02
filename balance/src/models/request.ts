@@ -10,4 +10,4 @@ const RequestModel = sequelize.define('Request', {
   error: sequelize.Sequelize.JSON,
 }, { tableName: 'Request', freezeTableName: true, timestamps: false });
 
-module.exports = RequestModel;
+export default new RequestModel;

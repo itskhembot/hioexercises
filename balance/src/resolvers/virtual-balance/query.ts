@@ -1,6 +1,6 @@
 import VirtualBalanceModel from '../../models/virtual-balance';
 
-module.exports = {
+export default {
   Query: {
     virtualBalance: async (obj, args) => (
       VirtualBalanceModel.findOne({ where: { id: args.id } })),

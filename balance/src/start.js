@@ -1,3 +1,2 @@
-import server from './index';
-
+var server = require(".");
 server.start(4000);

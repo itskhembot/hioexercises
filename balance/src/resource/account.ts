@@ -1,6 +1,6 @@
 import AccountModel from '../models/account';
 
-module.exports = {
+export default {
   updateBalanceTable: async (obj, args) => {
     const account = await AccountModel.findOne({ where: { id: args.account } });
     try {

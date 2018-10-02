@@ -1,7 +1,7 @@
 import request from '../../resource/request';
 import virtualBalance from '../../resource/virtual-balance';
 
-module.exports = {
+export default {
   Mutation: {
     createVirtualBalance: async (obj, args) => (
       request.idempotency(args, virtualBalance.createVirtual)
