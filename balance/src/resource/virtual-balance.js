@@ -18,14 +18,13 @@ module.exports = {
   updateVirtual: async (obj, args) => {
     let virtualBalance;
     try {
-      await VirtualBalanceModel.update({
+      const [, [updatedVirtualBalance]] = await VirtualBalanceModel.update({
         balance: args.amount,
       }, {
         where: { account: args.account, context: args.context },
         returning: true,
-        }).then(([rowsUpdate, [updatedVirtualBalance]]) => {// eslint-disable-line
-        virtualBalance = updatedVirtualBalance;
       });
+      virtualBalance = updatedVirtualBalance;
     } catch (err) {
       virtualBalance = err.message;
     }

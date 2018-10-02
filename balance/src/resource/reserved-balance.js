@@ -17,14 +17,13 @@ module.exports = {
   updateReserved: async (obj, args) => {
     let reservedBalance;
     try {
-      await ReservedBalanceModel.update({
+      const [, [updatedReservedBalance]] = await ReservedBalanceModel.update({
         balance: args.amount,
       }, {
         where: { account: args.account, context: args.context },
         returning: true,
-      }).then(([rowsUpdate, [updatedReservedBalance]]) => {// eslint-disable-line
-        reservedBalance = updatedReservedBalance;
       });
+      reservedBalance = updatedReservedBalance;
     } catch (err) {
       reservedBalance = err.message;
     }
