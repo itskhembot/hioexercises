@@ -1,7 +1,7 @@
 import ReservedBalanceModel from '../models/reserved-balance';
 
-export default {
-  createReserved: async ({}, args: any) => {
+
+  export async function createReserved({}, args: any){
     let reservedBalance;
     try {
       reservedBalance = await ReservedBalanceModel.create({
@@ -13,8 +13,8 @@ export default {
       reservedBalance = err.message;
     }
     return reservedBalance;
-  },
-  updateReserved: async ({}, args: any) => {
+  };
+  export async function updateReserved({}, args: any){
     let reservedBalance;
     try {
       const [, [updatedReservedBalance]] = await ReservedBalanceModel.update({
@@ -28,8 +28,8 @@ export default {
       reservedBalance = err.message;
     }
     return reservedBalance;
-  },
-  releaseReserved: async ({}, args: any) => {
+  };
+  export async function releaseReserved({}, args: any){
     try {
       await ReservedBalanceModel.update({
         isReleased: true,
@@ -38,5 +38,4 @@ export default {
       return err.message;
     }
     return true;
-  },
-};
+  };

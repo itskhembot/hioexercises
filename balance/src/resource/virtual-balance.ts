@@ -1,8 +1,8 @@
 import VirtualBalanceModel from '../models/virtual-balance';
 
 
-export default {
-  createVirtual: async ({}, args: any) => {
+
+export async function createVirtual({}, args: any){
     let virtualBalance;
     try {
       virtualBalance = await VirtualBalanceModel.create({
@@ -14,8 +14,8 @@ export default {
       virtualBalance = err.message;
     }
     return virtualBalance;
-  },
-  updateVirtual: async ({}, args: any) => {
+  };
+  export async function updateVirtual({}, args: any){
     let virtualBalance;
     try {
       const [, [updatedVirtualBalance]] = await VirtualBalanceModel.update({
@@ -29,8 +29,8 @@ export default {
       virtualBalance = err.message;
     }
     return virtualBalance;
-  },
-  cancelVirtual: async ({}, args: any) => {
+  };
+  export async function cancelVirtual({}, args: any){
     try {
       await VirtualBalanceModel.destroy(
         { where: { account: args.account, context: args.context } },
@@ -39,8 +39,8 @@ export default {
       return err.message;
     }
     return true;
-  },
-  commitVirtual: async ({}, args: any) => {
+  };
+  export async function commitVirtual({}, args: any){
     try {
       await VirtualBalanceModel.update({
         isCommit: true,
@@ -49,5 +49,4 @@ export default {
       return err.message;
     }
     return true;
-  },
-};
+  };

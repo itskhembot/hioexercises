@@ -1,7 +1,6 @@
 import AccountModel from '../models/account';
 
-export default {
-  updateBalanceTable: async ({}, args: any) => {
+  export async function updateBalanceTable({}, args: any) {
     const account = await AccountModel.findOne({ where: { id: args.account } });
     try {
       if (account) {
@@ -14,5 +13,4 @@ export default {
       throw new Error(err.message);
     }
     return 0;
-  },
-};
+  };
