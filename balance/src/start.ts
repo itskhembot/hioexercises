@@ -1,3 +1,3 @@
-const server = require(".");
+import server from '.';
 
 server.start(4000);

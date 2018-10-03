@@ -3,13 +3,13 @@ import reservedBalance from '../../resource/reserved-balance';
 
 export default {
   Mutation: {
-    createReservedBalance: async (obj, args) => (
+    createReservedBalance: async ({}, args: any) => (
       request.idempotency(args, reservedBalance.createReserved)
     ),
-    updateReservedBalance: async (obj, args) => (
+    updateReservedBalance: async ({}, args: any) => (
       request.idempotency(args, reservedBalance.updateReserved)
     ),
-    releaseReservedBalance: async (obj, args) => (
+    releaseReservedBalance: async ({}, args: any) => (
       request.idempotency(args, reservedBalance.releaseReserved)
     ),
   },

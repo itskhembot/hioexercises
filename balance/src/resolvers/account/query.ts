@@ -3,7 +3,7 @@ import AccountModel from '../../models/account';
 
 export default {
   Query: {
-    account: async (obj, args) => (
+    account: async ({}, args: any) => (
       AccountModel.findOne({ where: { id: args.id } })),
   },
 };

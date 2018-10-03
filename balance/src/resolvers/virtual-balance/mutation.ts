@@ -3,16 +3,16 @@ import virtualBalance from '../../resource/virtual-balance';
 
 export default {
   Mutation: {
-    createVirtualBalance: async (obj, args) => (
+    createVirtualBalance: async ({}, args: any) => (
       request.idempotency(args, virtualBalance.createVirtual)
     ),
-    updateVirtualBalance: async (obj, args) => (
+    updateVirtualBalance: async ({}, args: any) => (
       request.idempotency(args, virtualBalance.updateVirtual)
     ),
-    cancelVirtualBalance: async (obj, args) => (
+    cancelVirtualBalance: async ({}, args: any) => (
       request.idempotency(args, virtualBalance.cancelVirtual)
     ),
-    commitVirtualBalance: async (obj, args) => (
+    commitVirtualBalance: async ({}, args: any) => (
       request.idempotency(args, virtualBalance.commitVirtual)
     ),
   },

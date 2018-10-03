@@ -3,7 +3,7 @@ import account from '../../resource/account';
 
 export default {
   Mutation: {
-    updateBalance: async (obj, args) => (
+    updateBalance: async ({}, args: any) => (
       request.idempotency(args, account.updateBalanceTable)
     ),
   },
