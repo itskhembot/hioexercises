@@ -22,12 +22,11 @@ const apollo = new ApolloServer({ schema });
 
 let apollorun: any;
 
-async function start(port: number) {
+export async function start(port: number) {
   apollorun = await apollo.listen(port);
   return apollorun;
 }
 
-async function stop() {
+export async function stop() {
   return new Promise(resolve => apollorun.close(resolve));
 }
-export default { start, stop };
