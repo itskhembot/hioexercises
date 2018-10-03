@@ -1,3 +1,3 @@
-import server from '.';
+import { start } from '.';
 
-server.start(4000);
+start(4000);

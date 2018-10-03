@@ -1,20 +1,20 @@
-import request from '../../resource/request';
-import virtualBalance from '../../resource/virtual-balance';
+import { idempotency } from '../../resource/request';
+import { createVirtual, updateVirtual, cancelVirtual, commitVirtual } from '../../resource/virtual-balance';
 import { IVirtualBalanceInput, IVirtualBalanceInputType } from '../../types/virtual-balance-type';
 
 export default {
   Mutation: {
     createVirtualBalance: async ({}, args: IVirtualBalanceInputType) => (
-      request.idempotency(args, virtualBalance.createVirtual)
+      idempotency(args, createVirtual)
     ),
     updateVirtualBalance: async ({}, args: IVirtualBalanceInputType) => (
-      request.idempotency(args, virtualBalance.updateVirtual)
+      idempotency(args, updateVirtual)
     ),
     cancelVirtualBalance: async ({}, args: IVirtualBalanceInput) => (
-      request.idempotency(args, virtualBalance.cancelVirtual)
+      idempotency(args, cancelVirtual)
     ),
     commitVirtualBalance: async ({}, args: IVirtualBalanceInput) => (
-      request.idempotency(args, virtualBalance.commitVirtual)
+      idempotency(args, commitVirtual)
     ),
   },
 };
