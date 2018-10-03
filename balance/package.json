@@ -17,6 +17,8 @@
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
+    "@types/graphql": "^14.0.1",
+    "@types/sequelize": "^4.27.26",
     "apollo-server": "^2.0.7",
     "graphql": "^14.0.2",
     "graphql-middleware": "^1.7.2",
