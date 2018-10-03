@@ -1,7 +1,8 @@
 import ReservedBalanceModel from '../models/reserved-balance';
+import { IReservedBalanceInput, IReservedBalanceInputType } from '../types/reserved-balance-type';
 
 
-  export async function createReserved({}, args: any){
+  export async function createReserved({}, args: IReservedBalanceInputType){
     let reservedBalance;
     try {
       reservedBalance = await ReservedBalanceModel.create({
@@ -14,7 +15,7 @@ import ReservedBalanceModel from '../models/reserved-balance';
     }
     return reservedBalance;
   };
-  export async function updateReserved({}, args: any){
+  export async function updateReserved({}, args: IReservedBalanceInputType){
     let reservedBalance;
     try {
       const [, [updatedReservedBalance]] = await ReservedBalanceModel.update({
@@ -29,7 +30,7 @@ import ReservedBalanceModel from '../models/reserved-balance';
     }
     return reservedBalance;
   };
-  export async function releaseReserved({}, args: any){
+  export async function releaseReserved({}, args: IReservedBalanceInput){
     try {
       await ReservedBalanceModel.update({
         isReleased: true,

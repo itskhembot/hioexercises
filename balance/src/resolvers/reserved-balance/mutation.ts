@@ -1,15 +1,16 @@
 import request from '../../resource/request';
 import reservedBalance from '../../resource/reserved-balance';
+import { IReservedBalanceInput, IReservedBalanceInputType } from '../../types/reserved-balance-type';
 
 export default {
   Mutation: {
-    createReservedBalance: async ({}, args: any) => (
+    createReservedBalance: async ({}, args: IReservedBalanceInputType) => (
       request.idempotency(args, reservedBalance.createReserved)
     ),
-    updateReservedBalance: async ({}, args: any) => (
+    updateReservedBalance: async ({}, args: IReservedBalanceInputType) => (
       request.idempotency(args, reservedBalance.updateReserved)
     ),
-    releaseReservedBalance: async ({}, args: any) => (
+    releaseReservedBalance: async ({}, args: IReservedBalanceInput) => (
       request.idempotency(args, reservedBalance.releaseReserved)
     ),
   },

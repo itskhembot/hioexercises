@@ -1,8 +1,9 @@
 import VirtualBalanceModel from '../models/virtual-balance';
+import { IVirtualBalanceInput, IVirtualBalanceInputType } from '../types/virtual-balance-type';
 
 
 
-export async function createVirtual({}, args: any){
+export async function createVirtual({}, args: IVirtualBalanceInputType){
     let virtualBalance;
     try {
       virtualBalance = await VirtualBalanceModel.create({
@@ -15,7 +16,7 @@ export async function createVirtual({}, args: any){
     }
     return virtualBalance;
   };
-  export async function updateVirtual({}, args: any){
+  export async function updateVirtual({}, args: IVirtualBalanceInputType){
     let virtualBalance;
     try {
       const [, [updatedVirtualBalance]] = await VirtualBalanceModel.update({
@@ -30,7 +31,7 @@ export async function createVirtual({}, args: any){
     }
     return virtualBalance;
   };
-  export async function cancelVirtual({}, args: any){
+  export async function cancelVirtual({}, args: IVirtualBalanceInput){
     try {
       await VirtualBalanceModel.destroy(
         { where: { account: args.account, context: args.context } },
@@ -40,7 +41,7 @@ export async function createVirtual({}, args: any){
     }
     return true;
   };
-  export async function commitVirtual({}, args: any){
+  export async function commitVirtual({}, args: IVirtualBalanceInput){
     try {
       await VirtualBalanceModel.update({
         isCommit: true,

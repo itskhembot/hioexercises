@@ -1,12 +1,24 @@
-import {GraphQLID, GraphQLInt, GraphQLString, GraphQLFloat, GraphQLObjectType, GraphQLInputObjectType} from 'graphql'
+import {GraphQLInt, GraphQLString, GraphQLFloat, GraphQLInputObjectType} from 'graphql'
 
-
+export interface IAccount {
+  id: number
+}
 export interface IAccountInputType {
     request: string
     account: number
     amount: number
 }
 
+export const Account = new GraphQLInputObjectType({
+  name: 'Account',
+  description: 'Input type to query account',
+  fields: () => ({
+      id: {
+          type: GraphQLInt,
+          description: 'Account ID of account'
+      }
+  })
+})
 
 export const AccountInputType = new GraphQLInputObjectType({
     name: 'AccountInputType',
