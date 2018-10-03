@@ -1,6 +1,7 @@
 import AccountModel from '../models/account';
+import AccountInputType from '../types/account-type';
 
-  export async function updateBalanceTable({}, args: any) {
+  export async function updateBalanceTable({}, args: AccountInputType) {
     const account = await AccountModel.findOne({ where: { id: args.account } });
     try {
       if (account) {
